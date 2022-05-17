@@ -1,10 +1,25 @@
----
-title: Doctocat Template
----
+private void addEntryNew(String timevalue, String value){
+LineData data = mChart.getData();
+if (data != null) {
+    set = data.getDataSetByIndex(0);
 
-import {HeroLayout} from '@primer/gatsby-theme-doctocat'
-export default HeroLayout
+    if (set == null) {
+        set = createSet();
+        data.addDataSet(set);
+    }
+    data.addXValue(timevalue);
+    data.addEntry(new Entry(Float.parseFloat(value), set.getEntryCount()), 0);
 
-# Introduction
+    mChart.notifyDataSetChanged();
+    mChart.setVisibleXRange(12);
+    mChart.moveViewToX(data.getXValCount() - 7);
+}
+/** Code for ToggleFilled */
+ ArrayList<LineDataSet> sets = (ArrayList<LineDataSet>) mChart.getData()
+         .getDataSets();
 
-These guidelines are a collection of principles, foundations and usage guidelines for designing GitHub command line products.
+ for (LineDataSet set : sets) {
+         set.setDrawFilled(true);
+ }
+ mChart.invalidate();
+ xpos_list.add(data.getXValCount()-1);
